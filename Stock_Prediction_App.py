@@ -85,3 +85,18 @@ st.write('Forecast components')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
 
+def get_coincap_data():
+    url = "https://api.coincap.io/v2/assets"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        print("Failed to fetch data from CoinCap API")
+        return None
+
+coin_data = get_coincap_data()
+if coin_data:
+    # Wyświetlenie danych
+    st.subheader("Data from CoinCap API")
+    st.write(coin_data)
