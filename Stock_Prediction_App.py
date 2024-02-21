@@ -51,13 +51,6 @@ data['RSI'] = calculate_rsi(data, window=14)
 st.subheader("Data with Technical Indicators")
 st.write(data.tail())
 
-# Pobierz dane z interfejsu API Gemini
-gemini_data = get_gemini_data()
-
-# Wyświetl dane w interfejsie użytkownika
-if gemini_data:
-    st.subheader("Data from Gemini API")
-    st.write(gemini_data)
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data["Date"], y=data["Close"], name="Close", line=dict(color="blue")))
