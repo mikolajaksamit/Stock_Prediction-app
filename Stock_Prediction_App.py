@@ -51,9 +51,10 @@ data['RSI'] = calculate_rsi(data, window=14)
 st.subheader("Data with Technical Indicators")
 st.write(data.tail())
 
+# Pobierz dane z interfejsu API Gemini
 gemini_data = get_gemini_data()
 
-# Wyświetlenie danych z interfejsu API Gemini
+# Wyświetl dane w interfejsie użytkownika
 if gemini_data:
     st.subheader("Data from Gemini API")
     st.write(gemini_data)
@@ -91,17 +92,3 @@ st.write('Forecast components')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
 
-# Pobierz dane z interfejsu API Gemini
-def get_gemini_data():
-    url = "https://api.gemini.com/v2/ticker/btcusd"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        # Poprawa formatu elementu "changes"
-        data['changes'] = [data['changes'][i] for i in range(len(data['changes']))]
-        return data
-    else:
-        st.error("Error retrieving data from Gemini API")
-    if gemini_data:
-        st.subheader("Data from Gemini API")
-        st.write(gemini_data)
