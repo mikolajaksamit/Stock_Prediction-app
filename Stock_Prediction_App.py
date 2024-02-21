@@ -51,37 +51,6 @@ data['RSI'] = calculate_rsi(data, window=14)
 st.subheader("Data with Technical Indicators")
 st.write(data.tail())
 
-st.subheader("Fundamental Data")
-
-if 'longName' in selected_stocks:
-    st.write("Company Name:", selected_stocks['longName'])
-else:
-    st.write("Company Name: Not available")
-
-if 'sector' in data:
-    st.write("Sector:", data['sector'])
-else:
-    st.write("Sector: Not available")
-
-if 'marketCap' in data:
-    st.write("Market Cap:", data['marketCap'])
-else:
-    st.write("Market Cap: Not available")
-
-if 'forwardPE' in data:
-    st.write("Forward P/E Ratio:", data['forwardPE'])
-else:
-    st.write("Forward P/E Ratio: Not available")
-
-if 'eps' in data:
-    st.write("EPS (Earnings Per Share):", data['eps'])
-else:
-    st.write("EPS (Earnings Per Share): Not available")
-
-if 'dividendYield' in data:
-    st.write("Dividend Yield:", data['dividendYield'])
-else:
-    st.write("Dividend Yield: Not available")
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data["Date"], y=data["Close"], name="Close", line=dict(color="blue")))
