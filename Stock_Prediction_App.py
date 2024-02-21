@@ -17,6 +17,13 @@ selected_stock = st.selectbox("Select dataset for prediction", stocks)
 n_years = st.slider("Year of prediction", 1, 9)
 period = n_years * 365
 
+aapl = yf.Ticker("aapl")
+aapl.info['forwardPE']
+
+aapl.info['dividendRate']
+
+aapl.dividends
+
 @st.cache_data
 def load_data(ticker):
     data = yf.download(ticker, start=START, end=TODAY)
