@@ -84,3 +84,21 @@ st.plotly_chart(fig1)
 st.write('Forecast components')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
+
+# Pobierz dane z interfejsu API Gemini
+def get_gemini_data():
+    url = "https://api.gemini.com/v2/ticker/btcusd"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        st.error("Error retrieving data from Gemini API")
+
+# Pobierz dane z interfejsu API Gemini
+gemini_data = get_gemini_data()
+
+# Wyświetl dane w interfejsie użytkownika
+if gemini_data:
+    st.subheader("Data from Gemini API")
+    st.write(gemini_data)
