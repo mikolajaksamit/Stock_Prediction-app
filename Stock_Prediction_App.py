@@ -3,7 +3,6 @@ from datetime import date
 import yfinance as yf
 from prophet import Prophet
 from prophet.plot import plot_plotly
-import ta
 from plotly import graph_objects as go
 
 START = "2015-01-01"
@@ -30,10 +29,23 @@ data_load_state.text("Loading data complete!")
 st.subheader("Raw data")
 st.write(data.tail())
 
-# Oblicz wskaźniki techniczne: MACD i RSI
-data['MACD'] = ta.trend.macd_diff(data['Close'])
-data['RSI'] = ta.momentum.rsi(data['Close'], window=14)
-data['SMA'] = ta.trend.sma_indicator(data['Close'], window=20)  # SMA 20
+def calculate_sma(data, window):
+    sma = data['Close'].rolling(window=window).mean()
+    return sma
+def calculate_rsi(data, window):
+    delta = data['Close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+    return rsi
+    
+# Obliczanie SMA dla 20 okresów
+data['SMA'] = calculate_sma(data, window=20)
+
+# Obliczanie RSI dla 14 okresów
+data['RSI'] = calculate_rsi(data, window=14)
+
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data["Date"], y=data["Close"], name="Close", line=dict(color="blue")))
