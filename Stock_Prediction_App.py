@@ -91,14 +91,9 @@ def get_gemini_data():
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
+        # Poprawa formatu elementu "changes"
+        data['changes'] = [data['changes'][i] for i in range(len(data['changes']))]
         return data
     else:
         st.error("Error retrieving data from Gemini API")
 
-# Pobierz dane z interfejsu API Gemini
-gemini_data = get_gemini_data()
-
-# Wyświetl dane w interfejsie użytkownika
-if gemini_data:
-    st.subheader("Data from Gemini API")
-    st.write(gemini_data)
