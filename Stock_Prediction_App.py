@@ -96,4 +96,6 @@ def get_gemini_data():
         return data
     else:
         st.error("Error retrieving data from Gemini API")
-
+    if gemini_data:
+    st.subheader("Data from Gemini API")
+    st.write(gemini_data)
