@@ -87,16 +87,18 @@ st.write(fig2)
 
 def get_coincap_data():
     url = "https://api.coincap.io/v2/assets"
-    response = requests.get(url)
+    params = {'search': 'BTC'}
+    response = requests.get(url, params=params)
     if response.status_code == 200:
         data = response.json()
-        return data
+        btc_data = [asset for asset in data['data'] if asset['symbol'] == 'BTC']
+        return btc_data
     else:
         print("Failed to fetch data from CoinCap API")
         return None
 
-coin_data = get_coincap_data()
-if coin_data:
+btc_data = get_coincap_data()
+if btc_data:
     # Wyświetlenie danych
-    st.subheader("Data from CoinCap API")
-    st.write(coin_data)
+    st.subheader("Data for BTC-USD from CoinCap API")
+    st.write(btc_data)
