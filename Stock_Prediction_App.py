@@ -17,16 +17,6 @@ selected_stock = st.selectbox("Select dataset for prediction", stocks)
 n_years = st.slider("Year of prediction", 1, 9)
 period = n_years * 365
 
-aapl = yf.Ticker("AAPL")
-
-forward_pe_ratio = aapl.info['forwardPE']
-dividend_rate = aapl.info['dividendRate']
-dividends = aapl.dividends
-
-st.write("Forward P/E Ratio:", forward_pe_ratio)
-st.write("Dividend Rate:", dividend_rate)
-st.write("Dividends:", dividends)
-
 @st.cache_data
 def load_data(ticker):
     data = yf.download(ticker, start=START, end=TODAY)
@@ -63,7 +53,7 @@ st.write(data.tail())
 
 st.subheader("Fundamental Data")
 
-if 'longName' in data:
+if 'longName' in stocks:
     st.write("Company Name:", data['longName'])
 else:
     st.write("Company Name: Not available")
