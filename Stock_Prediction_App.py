@@ -17,12 +17,15 @@ selected_stock = st.selectbox("Select dataset for prediction", stocks)
 n_years = st.slider("Year of prediction", 1, 9)
 period = n_years * 365
 
-aapl = yf.Ticker("aapl")
-aapl.info['forwardPE']
+aapl = yf.Ticker("AAPL")
 
-aapl.info['dividendRate']
+forward_pe_ratio = aapl.info['forwardPE']
+dividend_rate = aapl.info['dividendRate']
+dividends = aapl.dividends
 
-aapl.dividends
+st.write("Forward P/E Ratio:", forward_pe_ratio)
+st.write("Dividend Rate:", dividend_rate)
+st.write("Dividends:", dividends)
 
 @st.cache_data
 def load_data(ticker):
