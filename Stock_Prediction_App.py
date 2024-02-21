@@ -85,22 +85,3 @@ st.write('Forecast components')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
 
-def get_coincap_data():
-    url = "https://api.coincap.io/v2/assets"
-    params = {'search': 'BTC'}
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        btc_data = [asset for asset in data['data'] if asset['symbol'] == 'BTC']
-        return btc_data
-    else:
-        print("Failed to fetch data from CoinCap API")
-        return None
-
-btc_data = get_coincap_data()
-if btc_data:
-    # Konwersja na ramkę danych pandas
-    df = pd.DataFrame(btc_data)
-    # Wyświetlenie danych
-    st.subheader("DataFrame for BTC-USD from CoinCap API")
-    st.write(df)
