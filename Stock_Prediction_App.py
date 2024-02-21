@@ -99,6 +99,8 @@ def get_coincap_data():
 
 btc_data = get_coincap_data()
 if btc_data:
+    # Konwersja na ramkę danych pandas
+    df = pd.DataFrame(btc_data)
     # Wyświetlenie danych
-    st.subheader("Data for BTC-USD from CoinCap API")
-    st.write(btc_data)
+    st.subheader("DataFrame for BTC-USD from CoinCap API")
+    st.write(df)
