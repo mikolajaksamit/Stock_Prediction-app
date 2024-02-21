@@ -53,8 +53,8 @@ st.write(data.tail())
 
 st.subheader("Fundamental Data")
 
-if 'longName' in stocks:
-    st.write("Company Name:", data['longName'])
+if 'longName' in selected_stocks:
+    st.write("Company Name:", selected_stocks['longName'])
 else:
     st.write("Company Name: Not available")
 
