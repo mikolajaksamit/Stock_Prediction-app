@@ -55,7 +55,7 @@ st.write(data.tail())
 gemini_data = get_gemini_data()
 
 # Wyświetl dane w interfejsie użytkownika
-if gemini_data:
+    if gemini_data:
     st.subheader("Data from Gemini API")
     st.write(gemini_data)
 
