@@ -29,6 +29,9 @@ data_load_state.text("Loading data complete!")
 st.subheader("Raw data")
 st.write(data.tail())
 
+st.subheader("Data with Technical Indicators")
+st.write(data.tail())
+
 def calculate_sma(data, window):
     sma = data['Close'].rolling(window=window).mean()
     return sma
