@@ -29,8 +29,6 @@ data_load_state.text("Loading data complete!")
 st.subheader("Raw data")
 st.write(data.tail())
 
-st.subheader("Data with Technical Indicators")
-st.write(data.tail())
 
 def calculate_sma(data, window):
     sma = data['Close'].rolling(window=window).mean()
@@ -42,13 +40,16 @@ def calculate_rsi(data, window):
     rs = gain / loss
     rsi = 100 - (100 / (1 + rs))
     return rsi
-    
+
+
 # Obliczanie SMA dla 20 okresów
 data['SMA'] = calculate_sma(data, window=20)
 
 # Obliczanie RSI dla 14 okresów
 data['RSI'] = calculate_rsi(data, window=14)
 
+st.subheader("Data with Technical Indicators")
+st.write(data.tail())
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data["Date"], y=data["Close"], name="Close", line=dict(color="blue")))
