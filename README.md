@@ -1,1 +1,1 @@
-[# Stock_Prediction-app](https://stockprediction-app-epc2gxawwdfxwmyyxzdxr2.streamlit.app/?fbclid=IwAR0XGOiAIem8MVVWQkrkYgAm5rQ1PVPazVEIsv14brkQ_tKUu0stiWG901o#data-from-gemini-api)https://stockprediction-app-epc2gxawwdfxwmyyxzdxr2.streamlit.app/?fbclid=IwAR0XGOiAIem8MVVWQkrkYgAm5rQ1PVPazVEIsv14brkQ_tKUu0stiWG901o#data-from-gemini-api
+
